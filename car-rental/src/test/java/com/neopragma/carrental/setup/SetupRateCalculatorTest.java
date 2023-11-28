@@ -1,5 +1,6 @@
-package com.neopragma.carrental;
+package com.neopragma.carrental.setup;
 
+import com.neopragma.carrental.RateCalculator;
 import com.neopragma.carrental.util.Config;
 import org.javamoney.moneta.Money;
 import org.junit.jupiter.api.BeforeAll;

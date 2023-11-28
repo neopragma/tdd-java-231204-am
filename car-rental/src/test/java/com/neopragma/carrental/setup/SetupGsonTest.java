@@ -1,4 +1,4 @@
-package com.neopragma.carrental.util;
+package com.neopragma.carrental.setup;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;

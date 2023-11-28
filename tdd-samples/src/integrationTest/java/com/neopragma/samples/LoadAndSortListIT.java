@@ -14,7 +14,7 @@ public class LoadAndSortListIT {
 
     @Test
     public void itReturnsTheInputValuesAsASortedList() throws Exception {
-        List<String> expected = new ArrayList<>(Arrays.asList(
+        List<String> expected = new ArrayList<String>(Arrays.asList(
                 "Atlanta", "Baltimore", "Chicago", "Poughkeepsie"));
         LoadCityNames sut = new LoadCityNames();
         assertEquals(expected, sut.cityNames("src/integrationTest/resources/city-names.txt"));

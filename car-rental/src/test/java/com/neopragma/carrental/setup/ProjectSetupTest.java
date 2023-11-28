@@ -1,4 +1,4 @@
-package com.neopragma.carrental;
+package com.neopragma.carrental.setup;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,11 +28,6 @@ public class ProjectSetupTest {
     public void files_can_be_found_under_src_test_resources() throws IOException {
         ClassLoader classLoader = getClass().getClassLoader();
         assertNotNull(classLoader.getResourceAsStream(srcTestResourcesFilename));
-    }
-
-    @Test
-    public void unit_test_cases_can_see_the_src_main_java_directory() {
-        assertEquals("Yes, it works.", new ProjectSetupTestTarget().doesItWork());
     }
 
 }

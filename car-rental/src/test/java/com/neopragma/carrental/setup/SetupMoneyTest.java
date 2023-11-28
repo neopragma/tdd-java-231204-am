@@ -1,4 +1,4 @@
-package com.neopragma.carrental;
+package com.neopragma.carrental.setup;
 
 import com.neopragma.carrental.util.Config;
 import com.neopragma.carrental.util.CurrencyConverter;

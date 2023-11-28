@@ -12,7 +12,7 @@ Starter code for an exercise to use TDD for greenfield development.
 
 [Notes](docs/fizzbuzz.md).
 
-[Examples](docs/Package_fizzplay.md)
+[Examples](docs/Package_fizzplay.md) 
 
 ## Module tdd-rpn
 
@@ -24,7 +24,13 @@ Starter code for an exercise to use TDD for greenfield development.
 
 Starter code for an exercise to use TDD to approach modifications to existing code. 
 
-[Notes](gilded-rose.md).
+[Notes](docs/gilded-rose.md).
+
+## Module car-rental 
+
+Starter code for a more challenging refactoring/unit testing exercise.
+
+[Notes](docs/car-rental.md).
 
 ## Acknowledgements 
 
