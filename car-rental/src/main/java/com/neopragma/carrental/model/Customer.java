@@ -1,4 +1,4 @@
-package com.neopragma.carrental;
+package com.neopragma.carrental.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Entity;
@@ -12,7 +12,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "customer")
-class Customer {
+public class Customer {
 
 	private @Id
 	@GeneratedValue Long id;
@@ -27,7 +27,7 @@ class Customer {
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private LocalDate uraniumPlusSince;	Customer() {}
 
-	Customer(String name, LocalDate dateOfBirth, boolean smoker, String uraniumPlusMemberNumber, LocalDate uraniumPlusSince) {
+	public Customer(String name, LocalDate dateOfBirth, boolean smoker, String uraniumPlusMemberNumber, LocalDate uraniumPlusSince) {
 		this.name = name;
 		this.dateOfBirth = dateOfBirth;
 		this.smoker = smoker;

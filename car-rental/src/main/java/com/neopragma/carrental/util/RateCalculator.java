@@ -1,4 +1,4 @@
-package com.neopragma.carrental;
+package com.neopragma.carrental.util;
 
 import com.neopragma.carrental.util.Config;
 import org.javamoney.moneta.Money;

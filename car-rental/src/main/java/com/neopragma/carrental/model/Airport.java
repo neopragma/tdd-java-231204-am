@@ -1,4 +1,4 @@
-package com.neopragma.carrental;
+package com.neopragma.carrental.model;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.CompositeType;
@@ -12,14 +12,14 @@ import io.hypersistence.utils.hibernate.type.money.MonetaryAmountType;
 
 @Entity
 @Table(name = "airport")
-class Airport {
+public class Airport {
 
 // Note: @GeneratedValue does not seem to have an effect
 	private @Id @GeneratedValue
 	Long id;
 
 	@Column(name = "iata", unique = true)
-	String iata;
+	private String iata;
 	private String name;
 	@AttributeOverrides({
 			@AttributeOverride(
@@ -34,19 +34,19 @@ class Airport {
 	@CompositeType(MonetaryAmountType.class)
 	private MonetaryAmount airportFee;
 
-	Airport(String name, String iata, MonetaryAmount airportFee) {
+	public Airport(String name, String iata, MonetaryAmount airportFee) {
 		this.name = name;
 		this.iata = iata;
 		this.airportFee = airportFee;
 	}
-	Airport(Long id, String name, String iata, MonetaryAmount airportFee) {
+	public Airport(Long id, String name, String iata, MonetaryAmount airportFee) {
 		this.id = id;
 		this.name = name;
 		this.iata = iata;
 		this.airportFee = airportFee;
 	}
 
-	Airport() {}
+	public Airport() {}
 
 	public Long getId() {
 		return this.id;

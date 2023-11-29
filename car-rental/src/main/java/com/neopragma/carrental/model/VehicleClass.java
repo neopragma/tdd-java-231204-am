@@ -1,26 +1,30 @@
-package com.neopragma.carrental;
+package com.neopragma.carrental.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
-import javax.persistence.Table;
+import java.io.Serializable;
 import java.text.MessageFormat;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "vehicle_class")
-class VehicleClass {
+public class VehicleClass implements Serializable {
+	public VehicleClass(String name) {
+
+		this.name = name;
+	}
+	@JdbcTypeCode(SqlTypes.JSON)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @JoinColumn(name = "vehicleClass")
+	Set<BaseDailyRentalRate> baseDailyRentalRateSet;
 
 	private @Id
 	@GeneratedValue Long id;
 	private String name;
-	VehicleClass() {}
-
-	VehicleClass(String name) {
-
-		this.name = name;
-	}
+	public VehicleClass() {}
 
 	public Long getId() {
 		return this.id;

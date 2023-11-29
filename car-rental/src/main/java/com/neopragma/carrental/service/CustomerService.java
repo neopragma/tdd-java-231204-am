@@ -1,5 +1,8 @@
-package com.neopragma.carrental;
+package com.neopragma.carrental.service;
 
+import com.neopragma.carrental.exceptions.CustomerNotFoundException;
+import com.neopragma.carrental.persistence.CustomerRepository;
+import com.neopragma.carrental.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,16 +11,15 @@ import java.util.List;
 @Service
 public class CustomerService {
     @Autowired
-    CustomerRepository repository;
+    private CustomerRepository repository;
 
     /** called from unit tests */
-    CustomerService(CustomerRepository repository) {
+   public CustomerService(CustomerRepository repository) {
         this.repository = repository;
     }
 
-    /** used by spring boot */
-    CustomerService() {}
-
+    /** called by spring boot */
+    public CustomerService() {}
     public List<Customer> findAll() {
         return repository.findAll();
     }

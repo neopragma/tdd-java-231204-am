@@ -1,5 +1,8 @@
-package com.neopragma.carrental;
+package com.neopragma.carrental.controller;
 
+import com.neopragma.carrental.model.Airport;
+import com.neopragma.carrental.service.AirportService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.*;
@@ -11,18 +14,14 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
-class AirportController {
+public class AirportController {
 
-	private final AirportRepository repository;
-
-	AirportController(AirportRepository repository) {
-		this.repository = repository;
-	}
+	@Autowired
+	private AirportService service;
 
 	@GetMapping("/airport")
-	CollectionModel<EntityModel<Airport>> all() {
-
-		List<EntityModel<Airport>> airports = repository.findAll().stream()
+	public CollectionModel<EntityModel<Airport>> all() {
+		List<EntityModel<Airport>> airports = service.findAll().stream()
 				.map(airport -> EntityModel.of(airport,
 						linkTo(methodOn(AirportController.class).one(airport.getId())).withSelfRel(),
 						linkTo(methodOn(AirportController.class).all()).withRel("airports")))
@@ -32,39 +31,25 @@ class AirportController {
 	}
 
 	@PostMapping("/airport")
-	Airport newAirport(@RequestBody Airport newAirport) {
-		return repository.save(newAirport);
+	public Airport newAirport(@RequestBody Airport newAirport) {
+		return service.save(newAirport);
 	}
 
 	@GetMapping("/airport/{id}")
-	EntityModel<Airport> one(@PathVariable("id") Long id) {
-
-		Airport airport = repository.findById(id) //
-				.orElseThrow(() -> new AirportNotFoundException(id));
-
+	public EntityModel<Airport> one(@PathVariable("id") Long id) {
+		Airport airport = service.findById(id);
 		return EntityModel.of(airport,
 				linkTo(methodOn(AirportController.class).one(id)).withSelfRel(),
 				linkTo(methodOn(AirportController.class).all()).withRel("airports"));
 	}
 
 	@PutMapping("/airport/{id}")
-	Airport replaceAirport(@RequestBody Airport newAirport, @PathVariable Long id) {
-
-		return repository.findById(id)
-				.map(airport -> {
-					airport.setName(newAirport.getName());
-					airport.setIata(newAirport.getIata());
-					airport.setAirportFee(newAirport.getAirportFee());
-					return repository.save(airport);
-				}) //
-				.orElseGet(() -> {
-					newAirport.setId(id);
-					return repository.save(newAirport);
-				});
+	public Airport replaceAirport(@RequestBody Airport newAirport, @PathVariable Long id) {
+        return service.replace(newAirport, id);
 	}
 
 	@DeleteMapping("/airport/{id}")
-	void deleteAirport(@PathVariable Long id) {
-		repository.deleteById(id);
+	public void deleteAirport(@PathVariable Long id) {
+		service.deleteById(id);
 	}
 }

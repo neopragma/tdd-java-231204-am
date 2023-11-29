@@ -1,5 +1,7 @@
-package com.neopragma.carrental;
+package com.neopragma.carrental.controller;
 
+import com.neopragma.carrental.service.CustomerService;
+import com.neopragma.carrental.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
@@ -12,15 +14,14 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
-class CustomerController {
+public class CustomerController {
 
 	@Autowired
-	private CustomerService customerService;
+	private CustomerService service;
 
 	@GetMapping("/customer")
-	CollectionModel<EntityModel<Customer>> all() {
-
-		List<EntityModel<Customer>> customers = customerService.findAll().stream()
+	public CollectionModel<EntityModel<Customer>> all() {
+		List<EntityModel<Customer>> customers = service.findAll().stream()
 				.map(customer -> EntityModel.of(customer,
 						linkTo(methodOn(CustomerController.class).one(customer.getId())).withSelfRel(),
 						linkTo(methodOn(CustomerController.class).all()).withRel("customers")))
@@ -30,25 +31,25 @@ class CustomerController {
 	}
 
 	@PostMapping("/customer")
-	Customer newCustomer(@RequestBody Customer newCustomer) {
-		return customerService.save(newCustomer);
+	public Customer newCustomer(@RequestBody Customer newCustomer) {
+		return service.save(newCustomer);
 	}
 
 	@GetMapping("/customer/{id}")
-	EntityModel<Customer> one(@PathVariable("id") Long id) {
-		Customer customer = customerService.findById(id);
+	public EntityModel<Customer> one(@PathVariable("id") Long id) {
+		Customer customer = service.findById(id);
 		return EntityModel.of(customer,
 				linkTo(methodOn(CustomerController.class).one(id)).withSelfRel(),
 				linkTo(methodOn(CustomerController.class).all()).withRel("customers"));
 	}
 
 	@PutMapping("/customer/{id}")
-	Customer replaceCustomer(@RequestBody Customer newCustomer, @PathVariable Long id) {
-		return customerService.replace(newCustomer, id);
+	public Customer replaceCustomer(@RequestBody Customer newCustomer, @PathVariable Long id) {
+		return service.replace(newCustomer, id);
 	}
 
 	@DeleteMapping("/customer/{id}")
-	void deleteCustomer(@PathVariable Long id) {
-		customerService.deleteById(id);
+	public void deleteCustomer(@PathVariable Long id) {
+		service.deleteById(id);
 	}
 }

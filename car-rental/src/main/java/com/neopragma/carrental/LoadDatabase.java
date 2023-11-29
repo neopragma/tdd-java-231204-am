@@ -1,5 +1,8 @@
 package com.neopragma.carrental;
 
+import com.fasterxml.jackson.databind.ser.Serializers;
+import com.neopragma.carrental.model.*;
+import com.neopragma.carrental.persistence.*;
 import org.javamoney.moneta.Money;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Configuration
 class LoadDatabase {
@@ -111,6 +115,31 @@ class LoadDatabase {
 							"Toronto Pearson International Airport",
 							"YYZ", Money.of(31.75, "USD"))));
 		};
+	}
 
+	@Bean
+	CommandLineRunner loadLocations(LocationRepository repository) {
+		return args -> {
+			log.info("Preloading " + repository.save(new Location(
+					"en","US","CA","Los Angeles","LAX")));
+		};
+	}
+	@Bean
+	CommandLineRunner loadBaseDailyRentalRates(BaseDailyRentalRateRepository repository) {
+		return args -> {
+			// Los Angeles, CA, US
+			log.info("Preloading " + repository.save(new BaseDailyRentalRate(
+					1L, 1L, Money.of(28, "USD"))));
+			log.info("Preloading " + repository.save(new BaseDailyRentalRate(
+					1L, 2L, Money.of(52, "USD"))));
+			log.info("Preloading " + repository.save(new BaseDailyRentalRate(
+					1L, 3L, Money.of(65, "USD"))));
+			log.info("Preloading " + repository.save(new BaseDailyRentalRate(
+					1L, 4L, Money.of(105, "USD"))));
+			log.info("Preloading " + repository.save(new BaseDailyRentalRate(
+					1L, 5L, Money.of(95, "USD"))));
+			log.info("Preloading " + repository.save(new BaseDailyRentalRate(
+					1L, 6L, Money.of(95, "USD"))));
+		};
 	}
 }

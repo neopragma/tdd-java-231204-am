@@ -1,4 +1,4 @@
-package com.neopragma.carrental;
+package com.neopragma.carrental.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-class AirportNotFoundAdvice {
+public class LocationNotFoundAdvice {
 
 	@ResponseBody
-	@ExceptionHandler(AirportNotFoundException.class)
+	@ExceptionHandler(LocationNotFoundException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
-	String airportNotFoundHandler(AirportNotFoundException ex) {
+	public String locationNotFoundHandler(LocationNotFoundException ex) {
 		return ex.getMessage();
 	}
 }
