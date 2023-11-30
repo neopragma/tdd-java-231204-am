@@ -3,6 +3,7 @@ package com.neopragma.carrental.service;
 import com.neopragma.carrental.model.VehicleClass;
 import com.neopragma.carrental.exceptions.VehicleClassNotFoundException;
 import com.neopragma.carrental.persistence.VehicleClassRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,12 +11,13 @@ import java.util.List;
 @Service
 public class VehicleClassService {
 
-	private final VehicleClassRepository repository;
+@Autowired
+private VehicleClassRepository repository;
 
 	public VehicleClassService(VehicleClassRepository repository) {
 		this.repository = repository;
 	}
-
+	public VehicleClassService() {}
 	public List<VehicleClass> findAll() {
 		return repository.findAll();
 	}

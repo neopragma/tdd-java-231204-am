@@ -2,11 +2,13 @@ package com.neopragma.carrental.util;
 
 import com.neopragma.carrental.util.Config;
 import org.javamoney.moneta.Money;
+import org.springframework.stereotype.Component;
 
 import javax.money.MonetaryAmount;
 import java.time.LocalDate;
 import java.time.Period;
 
+@Component
 public class RateCalculator {
 
     public Money calculateDailyRate(
@@ -205,8 +207,10 @@ public class RateCalculator {
                     dailyRate = dailyRate.add(Money.of(5, "USD"));
                 }
             }
-            if (powerType.equals("electric") || powerType.startsWith("hybrid ")) {
-                dailyRate = dailyRate.subtract(Money.of(10, "USD"));
+            if (powerType != null) {
+                if (powerType.equals("electric") || powerType.startsWith("hybrid ")) {
+                    dailyRate = dailyRate.subtract(Money.of(10, "USD"));
+                }
             }
             if (estimatedMileage > 0) {
                 if (pickupState.equals("CA")) {
@@ -285,22 +289,24 @@ public class RateCalculator {
                     }
             }
             dailyRate = dailyRate.add(Money.of(baseRateForVehicleType, "USD"));
-            double adjustmentForPowerType = 0.0;
-            switch (powerType) {
-                case "diesel":
-                case "electric":
-                case "hybrid gasoline electric":
-                    adjustmentForPowerType = 4.0;
-                    break;
-                case "hydrogen":
-                case "liquefied petroleum gas":
-                    adjustmentForPowerType = 2.0;
-                    break;
-                case "hybrid diesel electric":
-                    adjustmentForPowerType = 5.0;
-                    break;
+            if (powerType != null) {
+                double adjustmentForPowerType = 0.0;
+                switch (powerType) {
+                    case "diesel":
+                    case "electric":
+                    case "hybrid gasoline electric":
+                        adjustmentForPowerType = 4.0;
+                        break;
+                    case "hydrogen":
+                    case "liquefied petroleum gas":
+                        adjustmentForPowerType = 2.0;
+                        break;
+                    case "hybrid diesel electric":
+                        adjustmentForPowerType = 5.0;
+                        break;
+                }
+                dailyRate = dailyRate.add(Money.of(adjustmentForPowerType, "USD"));
             }
-            dailyRate = dailyRate.add(Money.of(adjustmentForPowerType, "USD"));
             if (Period.between(customerDateOfBirth, LocalDate.now()).getYears() < 25) {
                 dailyRate = dailyRate.add(Money.of(30.00, "USD"));
             }
@@ -340,16 +346,18 @@ public class RateCalculator {
                         dailyRate = dailyRate.add(Money.of(70, "USD"));
                     }
             }
-            if (powerType.equals("diesel") || powerType.equals("methane") || powerType.equals("liquefied petroleum gas")) {
-                dailyRate = dailyRate.add(Money.of(2, "USD"));
-            } else if (powerType.equals("gasoline")) {
-                dailyRate = dailyRate.add(Money.of(12, "USD"));
-            } else if (powerType.equals("electric")) {
-                dailyRate = dailyRate.add(Money.of(-4, "USD"));
-            } else if (powerType.equals("hybrid diesel electric")) {
-                dailyRate = dailyRate.add(Money.of(-2, "USD"));
-            } else if (powerType.equals("hybrid gasoline electric")) {
-                dailyRate = dailyRate.add(Money.of(-1, "USD"));
+            if (powerType != null) {
+                if (powerType.equals("diesel") || powerType.equals("methane") || powerType.equals("liquefied petroleum gas")) {
+                    dailyRate = dailyRate.add(Money.of(2, "USD"));
+                } else if (powerType.equals("gasoline")) {
+                    dailyRate = dailyRate.add(Money.of(12, "USD"));
+                } else if (powerType.equals("electric")) {
+                    dailyRate = dailyRate.add(Money.of(-4, "USD"));
+                } else if (powerType.equals("hybrid diesel electric")) {
+                    dailyRate = dailyRate.add(Money.of(-2, "USD"));
+                } else if (powerType.equals("hybrid gasoline electric")) {
+                    dailyRate = dailyRate.add(Money.of(-1, "USD"));
+                }
             }
             if (transmissionType.equals("automatic")) {
                 dailyRate.add(Money.of(6, "USD"));
@@ -389,10 +397,12 @@ public class RateCalculator {
                         ? Money.of(72, Config.valueOf(defaultCurrencyCodeKey, "USD"))
                         : Money.of(70, Config.valueOf(defaultCurrencyCodeKey, "USD"));
             }
-            if (powerType.equals("gasoline")) {
-                dailyRate = dailyRate.add(Money.of(5, Config.valueOf(defaultCurrencyCodeKey, "USD")));
-            } else if (powerType.equals("methane") || powerType.equals("hydrogen") || powerType.equals("hybrid gasoline electric")) {
-                dailyRate = dailyRate.add(Money.of(2, Config.valueOf(defaultCurrencyCodeKey, "USD")));
+            if (powerType != null) {
+                if (powerType.equals("gasoline")) {
+                    dailyRate = dailyRate.add(Money.of(5, Config.valueOf(defaultCurrencyCodeKey, "USD")));
+                } else if (powerType.equals("methane") || powerType.equals("hydrogen") || powerType.equals("hybrid gasoline electric")) {
+                    dailyRate = dailyRate.add(Money.of(2, Config.valueOf(defaultCurrencyCodeKey, "USD")));
+                }
             }
             if (transmissionType.equals("automatic")) {
                 dailyRate = dailyRate.add(Money.of(7, Config.valueOf(defaultCurrencyCodeKey, "USD")));
@@ -436,14 +446,16 @@ public class RateCalculator {
             if (estimatedMileage > 0) {
                 dailyRate = dailyRate.add(Money.of(0.05, "USD").multiply(estimatedMileage));
             }
-            if (powerType.equals("diesel") || powerType.equals("methane") || powerType.equals("hydrogen")) {
-                dailyRate = dailyRate.add(Money.of(2, currencyCode));
-            } else if (powerType.equals("gasoline")) {
-                dailyRate = dailyRate.add(Money.of(8, currencyCode));
-            } else if (powerType.equals("electric")) {
-                dailyRate = dailyRate.subtract(Money.of(5, currencyCode));
-            } else if (powerType.startsWith("hybrid")) {
-                dailyRate = dailyRate.subtract(Money.of(2, currencyCode));
+            if (powerType != null) {
+                if (powerType.equals("diesel") || powerType.equals("methane") || powerType.equals("hydrogen")) {
+                    dailyRate = dailyRate.add(Money.of(2, currencyCode));
+                } else if (powerType.equals("gasoline")) {
+                    dailyRate = dailyRate.add(Money.of(8, currencyCode));
+                } else if (powerType.equals("electric")) {
+                    dailyRate = dailyRate.subtract(Money.of(5, currencyCode));
+                } else if (powerType.startsWith("hybrid")) {
+                    dailyRate = dailyRate.subtract(Money.of(2, currencyCode));
+                }
             }
             if (Period.between(customerDateOfBirth, LocalDate.now()).getYears() < 25) {
                 dailyRate = dailyRate.add(Money.of(20.00, currencyCode));

@@ -1,4 +1,4 @@
-package com.neopragma.carrental;
+package com.neopragma.carrental.controller;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

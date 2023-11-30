@@ -1,4 +1,4 @@
-package com.neopragma.carrental;
+package com.neopragma.carrental.controller;
 
 import com.neopragma.carrental.exceptions.BaseDailyRentalRateNotFoundException;
 import org.javamoney.moneta.Money;
@@ -70,15 +70,12 @@ public class BaseDailyRentalRateControllerTest {
     }
 
     @Test
-    public void it_throws_when_the_rate_is_not_found() {
-        Exception exception = assertThrows(BaseDailyRentalRateNotFoundException.class, () -> {
+    public void it_throws_when_the_rate_is_not_found() throws Exception {
             mvc.perform(MockMvcRequestBuilders
                     .get("/baseDailyRentalRate/location/9999/vehicleClass/9999")
                     .accept(MediaType.APPLICATION_JSON))
             .andDo(print())
                     .andExpect(status().isNotFound());
-        });
-        assertEquals("x", exception.getMessage());
     }
 
 }

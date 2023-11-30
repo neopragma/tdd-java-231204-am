@@ -13,20 +13,6 @@ import java.util.Objects;
 @Entity
 @Table(name = "customer")
 public class Customer {
-
-	private @Id
-	@GeneratedValue Long id;
-	private String name;
-	@JsonFormat(pattern="yyyy-MM-dd")
-	private LocalDate dateOfBirth;
-
-	private boolean smoker;
-
-
-	private String uraniumPlusMemberNumber;
-	@JsonFormat(pattern="yyyy-MM-dd")
-	private LocalDate uraniumPlusSince;	Customer() {}
-
 	public Customer(String name, LocalDate dateOfBirth, boolean smoker, String uraniumPlusMemberNumber, LocalDate uraniumPlusSince) {
 		this.name = name;
 		this.dateOfBirth = dateOfBirth;
@@ -34,34 +20,70 @@ public class Customer {
 		this.uraniumPlusMemberNumber = uraniumPlusMemberNumber;
 		this.uraniumPlusSince = uraniumPlusSince;
 	}
+	public Customer() {}
+
+	private @Id
+	@GeneratedValue Long id;
+	private String name;
+	@JsonFormat(pattern="yyyy-MM-dd")
+	private LocalDate dateOfBirth;
+	private boolean smoker;
+	private String drivingRecord;
+	private String standing;
+	@JsonFormat(pattern="yyyy-MM-dd")
+	private LocalDate lastReferral;
+	private String uraniumPlusMemberNumber;
+	@JsonFormat(pattern="yyyy-MM-dd")
+	private LocalDate uraniumPlusSince;
+
+
 
 	public Long getId() {
 		return this.id;
 	}
-
-	public String getName() {
-		return this.name;
-	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	public String getName() {
+		return this.name;
+	}
 	public void setName(String name) {
 		this.name = name;
 	}
 	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
-
 	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
+	}
+	public boolean isSmoker() {
+		return smoker;
+	}
+	public void setSmoker(boolean smoker) {
+		this.smoker = smoker;
+	}
+	public String getDrivingRecord() {
+		return drivingRecord;
+	}
+	public void setDrivingRecord(String drivingRecord) {
+		this.drivingRecord = drivingRecord;
+	}
+	public String getStanding() {
+		return standing;
+	}
+	public void setStanding(String standing) {
+		this.standing = standing;
+	}
+	public LocalDate getLastReferral() {
+		return lastReferral;
+	}
+	public void setLastReferral(LocalDate lastReferral) {
+		this.lastReferral = lastReferral;
 	}
 
 	public String getUraniumPlusMemberNumber() {
 		return uraniumPlusMemberNumber;
 	}
-
 	public void setUraniumPlusMemberNumber(String uraniumPlusMemberNumber) {
 		this.uraniumPlusMemberNumber = uraniumPlusMemberNumber;
 	}
@@ -72,14 +94,6 @@ public class Customer {
 
 	public void setUraniumPlusSince(LocalDate uraniumPlusSince) {
 		this.uraniumPlusSince = uraniumPlusSince;
-	}
-
-	public boolean isSmoker() {
-		return smoker;
-	}
-
-	public void setSmoker(boolean smoker) {
-		this.smoker = smoker;
 	}
 
 	@Override

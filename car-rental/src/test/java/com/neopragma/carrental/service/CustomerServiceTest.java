@@ -1,4 +1,4 @@
-package com.neopragma.carrental;
+package com.neopragma.carrental.service;
 
 import com.neopragma.carrental.persistence.CustomerRepository;
 import com.neopragma.carrental.model.Customer;

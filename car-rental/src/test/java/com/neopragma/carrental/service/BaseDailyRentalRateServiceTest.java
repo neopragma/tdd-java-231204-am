@@ -1,4 +1,4 @@
-package com.neopragma.carrental;
+package com.neopragma.carrental.service;
 
 import com.neopragma.carrental.model.BaseDailyRentalRate;
 import com.neopragma.carrental.model.Customer;
@@ -43,7 +43,7 @@ public class BaseDailyRentalRateServiceTest {
         when(repository.findById(any())).thenReturn(
                 Optional.of(new BaseDailyRentalRate(
                         1L, 1L,
-                        Money.of(1, "USD")
+                        Money.of(28, "USD")
                 )));
         assertEquals(Money.of(28, "USD"),
                 service.findById(null)
