@@ -1,5 +1,6 @@
 package com.neopragma.carrental;
 
+import com.neopragma.carrental.exceptions.BaseDailyRentalRateNotFoundException;
 import org.javamoney.moneta.Money;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,6 +18,8 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -57,13 +60,25 @@ public class BaseDailyRentalRateControllerTest {
     private static Stream<Arguments> provideValuesForFindOneTests() {
         return Stream.of(
                 // Location 1 is Los Angeles
-                Arguments.of("1", "1", 28, "USD"),
-                Arguments.of("1", "2", 52, "USD"),
-                Arguments.of("1", "3", 65, "USD"),
-                Arguments.of("1", "4", 105, "USD"),
-                Arguments.of("1", "5", 95, "USD"),
-                Arguments.of("1", "6", 95, "USD")
+                Arguments.of("1", "1", 28, "USD"),    // city car
+                Arguments.of("1", "2", 52, "USD"),    // economy
+                Arguments.of("1", "3", 65, "USD"),    // standard sedan
+                Arguments.of("1", "4", 105, "USD"),   // luxury sedan
+                Arguments.of("1", "5", 95, "USD"),    // suv
+                Arguments.of("1", "6", 95, "USD")     // pickup truck
         );
+    }
+
+    @Test
+    public void it_throws_when_the_rate_is_not_found() {
+        Exception exception = assertThrows(BaseDailyRentalRateNotFoundException.class, () -> {
+            mvc.perform(MockMvcRequestBuilders
+                    .get("/baseDailyRentalRate/location/9999/vehicleClass/9999")
+                    .accept(MediaType.APPLICATION_JSON))
+            .andDo(print())
+                    .andExpect(status().isNotFound());
+        });
+        assertEquals("x", exception.getMessage());
     }
 
 }

@@ -1,4 +1,4 @@
-package com.neopragma.carrental.persistence;
+package com.neopragma.carrental.exceptions;
 
 import com.neopragma.carrental.model.LocationAndVehicleClassKey;
 

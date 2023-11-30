@@ -2,7 +2,7 @@ package com.neopragma.carrental.service;
 
 import com.neopragma.carrental.model.BaseDailyRentalRate;
 import com.neopragma.carrental.model.LocationAndVehicleClassKey;
-import com.neopragma.carrental.persistence.BaseDailyRentalRateNotFoundException;
+import com.neopragma.carrental.exceptions.BaseDailyRentalRateNotFoundException;
 import com.neopragma.carrental.persistence.BaseDailyRentalRateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
