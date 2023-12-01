@@ -173,7 +173,7 @@ Applied to the final bill, not the daily rental rate.
     countries                      rental_tax          mileage_fee (based on miles)  
     US - California                  .12                 .06  
     US - New Jersey                  .13                 .08  
-    US - New York					 .15                 .09  
+    US - New York                    .15                 .09  
     US                               .09                 .02  
     CA                               .11                 .04  
     DE                               .22                 .05  
@@ -424,8 +424,10 @@ To start the server and load the in-memory database, use this:
 mvnw spring-boot:run
 ```
 
-If you're working on Unix, Linux, Mac OS X, or on Microsoft Windows Subsystem for Linux or a bash shell, you can use the provided script to run the tests:
+If you're working on Unix, Linux, Mac OS X, or on Microsoft Windows Subsystem for Linux or a bash shell, you can use the provided script to start the server:
 
 ```shell
 ./server-start.sh
 ```
+
+This is meant for practicing refactoring, unit testing, and test-driving new and modified code. It is not set up to be deployed to a "real" server. It uses an in-memory database that is created by Spring Boot when the server starts.
