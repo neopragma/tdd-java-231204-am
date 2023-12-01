@@ -8,6 +8,10 @@ Here are the "specs" for the car rental application. The documentation may or ma
 
 This is the kind of incomplete and unclear documentation we often inherit with a legacy code base.
 
+All monetary amounts are carried in US dollars. Output for locales where a different currency is used must be converted. _Hint:_ There is a class named ```I18N``` that calls a public API for currency conversion. It may or may not work.
+
+All distances are carried in miles. Output for locales where kilometers are used must be converted.
+
 ### Vehicle Classes                                  
 
 city car  
@@ -22,116 +26,130 @@ Vehicles of class "city car" are only available in select large cities.
 ### Base daily rental rates by location before applying adjustments
 
 US base daily rates except CA, NY, NJ  
-city car                         N/A  
-economy                          45  
-standard sedan                   55  
-luxury sedan                     75  
-suv                              75  
-pickup truck                     75  
+
+    city car                         N/A  
+    economy                          45  
+    standard sedan                   55  
+    luxury sedan                     75  
+    suv                              75  
+    pickup truck                     75  
 
 US California base daily rates  
-city car                         28 (San Francisco, Los Angeles, Sacramento only)  
-economy                          52  
-standard sedan                   65  
-luxury sedan                    105  
-suv                              95  
-pickup truck                     95  
+
+    city car                         28 (San Francisco, Los Angeles, Sacramento only)  
+    economy                          52  
+    standard sedan                   65  
+    luxury sedan                    105  
+    suv                              95  
+    pickup truck                     95  
 
 US New York base daily rates  
-city car                         35 (NYC and Newark greater metro area only)  
-economy                          55  
-standard sedan                   68  
-luxury sedan                    133  
-suv                             140  
-pickup truck                     81  
+
+    city car                         35 (NYC and Newark greater metro area only)  
+    economy                          55  
+    standard sedan                   68  
+    luxury sedan                    133  
+    suv                             140  
+    pickup truck                     81  
 
 US New Jersey base daily rates  
-city car                         35 (NYC and Newark greater metro area only)  
-economy                          45  
-standard sedan                   58  
-luxury sedan                    123  
-suv                             130  
-pickup truck                     81  
+
+    city car                         35 (NYC and Newark greater metro area only)  
+    economy                          45  
+    standard sedan                   58  
+    luxury sedan                    123  
+    suv                             130  
+    pickup truck                     81  
 
 Canada base daily rates except Vancouver, Toronto  
-city car                         N/A  
-economy                          48  
-standard sedan                   54  
-luxury sedan                    110  
-suv                              78  
-pickup truck                     70  
+
+    city car                         N/A  
+    economy                          48  
+    standard sedan                   54  
+    luxury sedan                    110  
+    suv                              78  
+    pickup truck                     70  
 
 Canada base daily rates for Vancouver  
-city car                         35  
-economy                          52  
-standard sedan                   58  
-luxury sedan                    114  
-suv                              82  
-pickup truck                     76  
+
+    city car                         35  
+    economy                          52  
+    standard sedan                   58  
+    luxury sedan                    114  
+    suv                              82  
+    pickup truck                     76  
 
 Canada base daily rates for Toronto  
-city car                         35  
-economy                          52  
-standard sedan                   58  
-luxury sedan                    108  
-suv                              80  
-pickup truck                     75  
+
+    city car                         35  
+    economy                          52  
+    standard sedan                   58  
+    luxury sedan                    108  
+    suv                              80  
+    pickup truck                     75  
 
 Germany base daily rates for Frankfurt  
-city car                         38  
-economy                          58  
-standard sedan                   68  
-luxury sedan                     88  
-suv                              88  
-pickup truck                     75  
+
+    city car                         38  
+    economy                          58  
+    standard sedan                   68  
+    luxury sedan                     88  
+    suv                              88  
+    pickup truck                     75  
 
 Germany base daily rates except Frankfurt  
-city car                         33  
-economy                          54  
-standard sedan                   66  
-luxury sedan                     88  
-suv                              85  
-pickup truck                     72  
+
+    city car                         33  
+    economy                          54  
+    standard sedan                   66  
+    luxury sedan                     88  
+    suv                              85  
+    pickup truck                     72  
 
 France base daily rates for Paris metro area  
-city car                         35  
-economy                          44  
-standard sedan                   63  
-luxury sedan                     90  
-suv                              85  
-pickup truck                     72  
+
+    city car                         35  
+    economy                          44  
+    standard sedan                   63  
+    luxury sedan                     90  
+    suv                              85  
+    pickup truck                     72  
 
 France base daily rates except Paris  
-city car                         32  
-economy                          42  
-standard sedan                   55  
-luxury sedan                     63  
-suv                              70  
-pickup truck                     70  
+
+    city car                         32  
+    economy                          42  
+    standard sedan                   55  
+    luxury sedan                     63  
+    suv                              70  
+    pickup truck                     70  
 
 Spain base daily rates for Madrid metro area  
-city car                         35  
-economy                          44  
-standard sedan                   63  
-luxury sedan                     90  
-suv                              85  
-pickup truck                     72  
+
+    city car                         35  
+    economy                          44  
+    standard sedan                   63  
+    luxury sedan                     90  
+    suv                              85  
+    pickup truck                     72  
 
 Spain base daily rates for Barcelona metro area  
-city car                         35  
-economy                          44  
-standard sedan                   63  
-luxury sedan                     90  
-suv                              85  
-pickup truck                     72  
+
+    city car                         35  
+    economy                          44  
+    standard sedan                   63  
+    luxury sedan                     90  
+    suv                              85  
+    pickup truck                     72  
 
 Spain base daily rates except Madrid and Barcelona  
-city car                         32  
-economy                          42  
-standard sedan                   55  
-luxury sedan                     63  
-suv                              70  
-pickup truck                     70  
+
+    city car                         32  
+    economy                          42  
+    standard sedan                   55  
+    luxury sedan                     63  
+    suv                              70  
+    pickup truck                     70  
 
 ### Vehicle power
 
@@ -152,77 +170,83 @@ Not all fuels are used in all countries.
 
 Applied to the final bill, not the daily rental rate.
 
-countries                      rental_tax          mileage_fee (based on miles)  
-US - California                  .12                 .06  
-US - New Jersey                  .13                 .08  
-US - New York					 .15                 .09  
-US                               .09                 .02  
-CA                               .11                 .04  
-DE                               .22                 .05  
-FR                               .24                 .06  
-ES                               .17                 .03  
+    countries                      rental_tax          mileage_fee (based on miles)  
+    US - California                  .12                 .06  
+    US - New Jersey                  .13                 .08  
+    US - New York					 .15                 .09  
+    US                               .09                 .02  
+    CA                               .11                 .04  
+    DE                               .22                 .05  
+    FR                               .24                 .06  
+    ES                               .17                 .03  
 
 ### Daily rental rate adjustments for vehicle power types
 
 The daily rental rate may be adjusted upward (to cover maintenance costs or to discourage use) or downward (to encourage use) in various locations.
 
 US daily rate adjustment for power  
-diesel                           0  
-gasoline                         0  
-methane                          N/A  
-hydrogen                         N/A  
-liquefied petroleum gas          N/A                
-electric                        10  
-hybrid diesel electric          10  
-hybrid gasoline electric        10  
+
+    diesel                           0  
+    gasoline                         0  
+    methane                          N/A  
+    hydrogen                         N/A  
+    liquefied petroleum gas          N/A                
+    electric                        10  
+    hybrid diesel electric          10  
+    hybrid gasoline electric        10  
 
 Canada daily rate adjustment for power  
-diesel                           4  
-gasoline                         0  
-methane                          N/A  
-hydrogen                         2  
-liquefied petroleum gas          2               
-electric                         4  
-hybrid diesel electric           5  
-hybrid gasoline electric         4  
+
+    diesel                           4  
+    gasoline                         0  
+    methane                          N/A  
+    hydrogen                         2  
+    liquefied petroleum gas          2               
+    electric                         4  
+    hybrid diesel electric           5  
+    hybrid gasoline electric         4  
 
 Germany daily rate adjustment for power  
-diesel                           2  
-gasoline                         8  
-methane                          2  
-hydrogen                         2  
-liquefied petroleum gas          0             
-electric                        -5  
-hybrid diesel electric          -2  
-hybrid gasoline electric        -2  
+
+    diesel                           2  
+    gasoline                         8  
+    methane                          2  
+    hydrogen                         2  
+    liquefied petroleum gas          0             
+    electric                        -5  
+    hybrid diesel electric          -2  
+    hybrid gasoline electric        -2  
 
 France daily rate adjustment for power  
-diesel                           0  
-gasoline                         5  
-methane                          2  
-hydrogen                         2  
-liquefied petroleum gas          0               
-electric                         0  
-hybrid diesel electric           0  
-hybrid gasoline electric         2  
+
+    diesel                           0  
+    gasoline                         5  
+    methane                          2  
+    hydrogen                         2  
+    liquefied petroleum gas          0               
+    electric                         0  
+    hybrid diesel electric           0  
+    hybrid gasoline electric         2  
 
 Spain daily rate adjustment for power  
-diesel                           2  
-gasoline                        12  
-methane                          2  
-hydrogen                         0  
-liquefied petroleum gas          2               
-electric                        -4  
-hybrid diesel electric          -2  
-hybrid gasoline electric        -1  
+
+    diesel                           2  
+    gasoline                        12  
+    methane                          2  
+    hydrogen                         0  
+    liquefied petroleum gas          2               
+    electric                        -4  
+    hybrid diesel electric          -2  
+    hybrid gasoline electric        -1  
 
 ### Daily rate adjustments for transmission types
 
 Daily rate adjustment for automatic transmission (internal combustion only)  
-Germany                  9  
-France                   7  
-Spain                    6  
-US, Canada               0  
+
+    Germany                  9  
+    France                   7  
+    Spain                    6  
+    US, Canada               0  
 
 In the US and Canada, vehicles with manual transmissions are not offered. 
 
@@ -233,32 +257,31 @@ In Germany, France, and Spain, vehicles with manual transmissions are standard a
 Airport fees apply if the pickup location is one of the airports listed, except Germany and France.
 For Germany and France, airport fees apply if the dropoff location is one of the airports listed.
 
-IATA (city)  
-ATL (Atlanta)            30  
-BCN (Barcelona)          47  
-CDG (Paris)              42  
-CLT (Charlotte)          27  
-DEN (Denver)             28  
-DFW (Dallas/Ft. Worth)   34  
-EWR (Newark)             48.50  
-FRA (Frankfurt)          40  
-IAH (Houston)            32  
-JFK (New York)           50  
-LAX (Los Angeles)        45  
-MAD (Madrid)             31  
-MIA (Miami)              29  
-MUC (Munich)             35  
-PHX (Phoenix)            33 leave this one as an exercise
-SFO (San Francisco)      44  
-YYZ (Toronto)            31.75  
+    IATA (city)              Fee    
+    ATL (Atlanta)            30  
+    BCN (Barcelona)          47  
+    CDG (Paris)              42  
+    CLT (Charlotte)          27  
+    DEN (Denver)             28  
+    DFW (Dallas/Ft. Worth)   34  
+    EWR (Newark)             48.50  
+    FRA (Frankfurt)          40  
+    IAH (Houston)            32  
+    JFK (New York)           50  
+    LAX (Los Angeles)        45  
+    MAD (Madrid)             31  
+    MIA (Miami)              29  
+    MUC (Munich)             35  
+    SFO (San Francisco)      44  
+    YYZ (Toronto)            31.75  
 
 ### Driver age daily rate adjustment
               
-US   under 25    40      
-CA   under 25    30
-DE   under 25    20
-FR   under 25    20
-ES   under 27    16
+    US   under 25    40      
+    CA   under 25    30
+    DE   under 25    20
+    FR   under 25    20
+    ES   under 27    16
 
 ### Daily rate adjustment for driving record 
 
@@ -284,10 +307,10 @@ Germany daily rate adjustment for driving record (drivers of all ages)
 
 US daily rate adjustment for prior insurance claims   
 
-                                   general           NYC, San Fran
-1 claim within past 24 months             5                   2
-2 claims within past 24 months           10                   3
-mre than 2 claims within past 36 months  20                   6
+                                           general           NYC, San Fran
+    1 claim within past 24 months             5                   2
+    2 claims within past 24 months           10                   3
+    more than 2 claims within past 36 months 20                   6
 
 ### Uranium Plus member referrals
 
@@ -298,49 +321,55 @@ and joins Uranium Plus at the time of rental
 
 US and Canada one-time daily rate adjustment if this customer referred a new customer who
 joined Uranium Plus since their last rental.
+
 -4.5% off base rate, not considering other adjustments
 
 ### Insurance options
 
 US daily insurance rates - large cities  
-collision (self)                13  
-injury (self + passengers)      19 plus 3 per passenger or additional driver  
-collison (both parties)         20  
-injury (both parties)           44  
-full coverage (self + pass)     28 plus 4.50 per passenger or additional driver  
-full coverage (all parties)     52  
+
+    collision (self)                13  
+    injury (self + passengers)      19 plus 3 per passenger or additional driver  
+    collison (both parties)         20  
+    injury (both parties)           44  
+    full coverage (self + pass)     28 plus 4.50 per passenger or additional driver  
+    full coverage (all parties)     52  
 
 Canada daily insurance rates - except Vancouver, Toronto  
-collision (self)                10  
-injury (self + passengers)      16 plus 3 per passenger or additional driver  
-collison (both parties)         18  
-injury (both parties)           40  
-full coverage (self + pass)     24 plus 3 per passenger or additional driver  
-full coverage (all parties)     46  
+
+    collision (self)                10  
+    injury (self + passengers)      16 plus 3 per passenger or additional driver  
+    collison (both parties)         18  
+    injury (both parties)           40  
+    full coverage (self + pass)     24 plus 3 per passenger or additional driver  
+    full coverage (all parties)     46  
 
 Germany daily insurance rates  
-collision (self)                16  
-injury (self + passengers)      12  
-collison (both parties)         30  
-injury (both parties)           20  
-full coverage (self + pass)     32    
-full coverage (all parties)     48  
+
+    collision (self)                16  
+    injury (self + passengers)      12  
+    collison (both parties)         30  
+    injury (both parties)           20  
+    full coverage (self + pass)     32    
+    full coverage (all parties)     48  
 
 France daily insurance rates  
-collision (self)                23  
-injury (self + passengers)      10  
-collison (both parties)         46  
-injury (both parties)           20  
-full coverage (self + pass)     50    
-full coverage (all parties)     57  
+
+    collision (self)                23  
+    injury (self + passengers)      10  
+    collison (both parties)         46  
+    injury (both parties)           20  
+    full coverage (self + pass)     50    
+    full coverage (all parties)     57  
 
 Spain daily insurance rates  
-collision (self)                22  
-injury (self + passengers)       9  
-collison (both parties)         45  
-injury (both parties)           19  
-full coverage (self + pass)     46    
-full coverage (all parties)     51  
+
+    collision (self)                22  
+    injury (self + passengers)       9  
+    collison (both parties)         45  
+    injury (both parties)           19  
+    full coverage (self + pass)     46    
+    full coverage (all parties)     51  
 
 ### Daily rate adjustment for smokers
 
