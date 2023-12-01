@@ -17,6 +17,8 @@ luxury sedan (must be 21 years old)
 suv (must be 21 years old)                              
 pickup truck  
 
+Vehicles of class "city car" are only available in select large cities.
+
 ### Base daily rental rates by location before applying adjustments
 
 US base daily rates except CA, NY, NJ  
@@ -142,6 +144,10 @@ electric
 hybrid diesel electric            
 hybrid gasoline electric  
 
+A "city car" is a small electric vehicle. The only valid vehicle power type for "city car" is "electric". 
+
+Not all fuels are used in all countries.
+
 ### Rental taxes and mileage fees 
 
 Applied to the final bill, not the daily rental rate.
@@ -157,6 +163,8 @@ FR                               .24                 .06
 ES                               .17                 .03  
 
 ### Daily rental rate adjustments for vehicle power types
+
+The daily rental rate may be adjusted upward (to cover maintenance costs or to discourage use) or downward (to encourage use) in various locations.
 
 US daily rate adjustment for power  
 diesel                           0  
@@ -215,6 +223,10 @@ Germany                  9
 France                   7  
 Spain                    6  
 US, Canada               0  
+
+In the US and Canada, vehicles with manual transmissions are not offered. 
+
+In Germany, France, and Spain, vehicles with manual transmissions are standard and automatic transmissions are an upgrade.
 
 ### Airport fees per rental contract (not per day)
 
@@ -332,9 +344,15 @@ full coverage (all parties)     51
 
 ### Daily rate adjustment for smokers
 
-US, Canada, Germany rate adjustment if driver is a smoker: 4
+US, Canada, Germany rate adjustment if driver is a smoker: 4 
 
-## Refactoring/enhancement tasks
+### Customer standing 
+
+A customer who is not in good standing will be refused.
+
+## Refactoring and enhancement tasks
+
+As you address the following tasks, you are to approach the work with a "test driven" mindset. Refactor to simplify planned changes. Refactor to enable fine-grained unit testing. Drive changes from test cases when possible, and refactor incrementally as you work.
 
 Your tasks are:
 
@@ -342,9 +360,9 @@ Your tasks are:
 
 (2) Add support for daily rate reductions for long-term rentals. When the rental period is "weekly", reduce the daily rate by $5. When the rental period is "monthly", reduce the daily rate by $9.
 
-(3) Uranium Plus members get a 4% discount off the final rental contract price (not the daily rental rate), except insurance charges.
+(3) The Uranium Plus program is our customer loyalty program. Uranium Plus members get a 4% discount off the final rental contract price (not the daily rental rate), except insurance charges.
 
-(4) Add support for our new business location, Phoenix, Arizona, US. Airport code is PHX. Airport fee is $33.
+(4) Add support for our new business location, Phoenix, Arizona, US. Country code is US. State code is AZ. Airport code is PHX. Airport fee is $33.
 
 (5) Add a new Vehicle Class, "panel van", to be available in Germany, France, and Spain.
 
@@ -352,7 +370,7 @@ Your tasks are:
 
 ## Technical notes 
 
-You will need a 2023 or later version of JetBrains IntelliJ IDEA and Java release 21.
+You will need a 2023 or later version of JetBrains IntelliJ IDEA and Java release 21. The starter code depends on some Java 21 features, and the first version of IntelliJ IDEA to support that release is 2023. You are free to use another IDE or editor, but the starter project has not been configured or tested for IDEs/editors other than IntelliJ IDEA.
 
 Due to incompatibilities between Gradle 8._n_ and Java 21, we must use Maven for this project.
 
