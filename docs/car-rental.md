@@ -431,3 +431,11 @@ If you're working on Unix, Linux, Mac OS X, or on Microsoft Windows Subsystem fo
 ```
 
 This is meant for practicing refactoring, unit testing, and test-driving new and modified code. It is not set up to be deployed to a "real" server. It uses an in-memory database that is created by Spring Boot when the server starts.
+
+## OpenAPI and Swagger 
+
+The car-rental project is set up with OpenAPI and Swagger. Access http://localhost:8080/swagger-ui/index.html to use the Swagger UI.
+
+Note that the server will throw a lot of exceptions and spew a lot of text to the console because of (intentional) bad design. Don't be alarmed.
+
+

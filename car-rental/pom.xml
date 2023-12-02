@@ -22,6 +22,7 @@
         <spring-boot-starter.version>3.2.0</spring-boot-starter.version>
         <spring-boot-test.version>3.2.0</spring-boot-test.version>
         <spring-boot-maven.version>3.2.0</spring-boot-maven.version>
+        <springdoc.version>2.2.0</springdoc.version>
     </properties>
 
     <dependencies>
@@ -84,7 +85,11 @@
             <artifactId>spring-boot-maven-plugin</artifactId>
             <version>${spring-boot-maven.version}</version>
         </dependency>
-    </dependencies>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>${springdoc.version}</version>
+        </dependency>    </dependencies>
 
     <build>
         <plugins>
