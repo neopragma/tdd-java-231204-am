@@ -18,4 +18,29 @@ public class FizzbuzzTest
         assertEquals("Fizz", fizzbuzz.processNumber(3));
     }
 
+    @Test
+    public void itReturnsFizzForTheNumber6() {
+        assertEquals("Fizz", fizzbuzz.processNumber(6));
+    }
+    @Test
+    public void itReturnsBuzzForTheNumber5() {
+        assertEquals("Buzz", fizzbuzz.processNumber(5));
+    }
+    @Test
+    public void itReturnsBuzzForTheNumber10() {
+        assertEquals("Buzz", fizzbuzz.processNumber(10));
+    }
+    @Test
+    public void itReturnsFizzBuzzForTheNumber15() {
+        assertEquals("FizzBuzz", fizzbuzz.processNumber(15));
+    }
+    @Test
+    public void itReturnsFizzBuzzForTheNumber30() {
+        assertEquals("FizzBuzz", fizzbuzz.processNumber(30));
+    }
+    @Test
+    public void itReturns2ForTheNumber2() {
+        assertEquals("2", fizzbuzz.processNumber(2));
+    }
+
 }

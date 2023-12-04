@@ -10,7 +10,7 @@ public class CalcCheck {
         if (res.equals(2.5)) {
             ;
         } else {
-            System.out.println("Test 1 FAIL: Expected calc.sum(1.5,2.0) to equal 2.5, but was " + res);
+            System.out.println("Test 1 FA                                                               IL: Expected calc.sum(1.5,2.0) to equal 2.5, but was " + res);
         }
         res = calc.sum(1.5,2.0,3.2);
         if (res.equals(6.7)) {

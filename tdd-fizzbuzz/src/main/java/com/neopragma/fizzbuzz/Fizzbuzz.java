@@ -2,10 +2,17 @@ package com.neopragma.fizzbuzz;
 
 public class Fizzbuzz 
 {
-    public String processNumber(int number) {
-        return number % 15 == 0 ? "FizzBuzz" :
-                number % 3 == 0 ? "Fizz" :
-               number % 5 == 0 ? "Buzz" :
-                       String.valueOf(number);
+    public String processNumber(int i) {
+        String result = "";
+        if (i % 15 == 0) {
+            result = "FizzBuzz";
+        } else if (i % 5 == 0) {
+            result = "Buzz";
+        } else if (i % 3 == 0) {
+            result = "Fizz";
+        } else {
+            result = String.valueOf(i);
+        }
+        return result;
     }
 }
